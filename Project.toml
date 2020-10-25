@@ -1,0 +1,7 @@
+name = "MICE"
+uuid = "6fd42e50-ffc7-4854-9d38-291961c798a1"
+authors = ["Hannes <hasnep@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.2"

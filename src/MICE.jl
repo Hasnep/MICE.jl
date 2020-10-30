@@ -23,16 +23,16 @@ function mice(data, max_iterations = 5)
     for iteration = 1:max_iterations
         data_imputed_temp = copy(data_imputed)
         for response_variable in names(data)
+            # Only fit the model to rows where the response variable is not missing
+            response_missings = data_missings[response_variable]
+            data_train = data_imputed[.!response_missings, :]
+            
             # The explanatory variables are all the other variables
             explanatory_variables = filter(n -> n != response_variable, names(data))
+            
             # Fit a linear model with an intercept and each explanatory variable
             f = term(response_variable) ~ term(1) + foldl(+, term.(explanatory_variables))
-
-            response_missings = data_missings[response_variable]
-
-            # Only fit the model to rows where the response variable is not missing
-            data_train = data_imputed[.!response_missings, :]
-
+            
             # Fit the model
             model = lm(f, data_train)
 

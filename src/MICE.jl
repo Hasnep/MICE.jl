@@ -3,7 +3,7 @@ module MICE
 import Tables
 using DataFrames
 using GLM
-using Statistics:mean
+using Statistics: mean
 using StatsModels
 
 function mice(data)
